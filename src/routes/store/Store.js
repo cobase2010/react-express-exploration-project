@@ -9,36 +9,51 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as groceryItemActions from '../../actions/groceryItemActions';
 import GroceryItem from './GroceryItem';
-import GroceryItemStore from './../../stores/GroceryItemStore';
 import s from './Store.css';
 
 class Store extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired,
   };
   constructor(props) {
     super(props);
-    this.state = { items: {} };
-    GroceryItemStore.onChange((items) => {
-      this.onChange();
-    });
+    this.state = {
+      item: { name: '' },
+    };
+
+    this.onTitleChange = this.onTitleChange.bind(this);
+    this.onClickSave = this.onClickSave.bind(this);
   }
+
 /*
-  componentWillUnmount() {
-    GroceryItemStore.removeChangeListener(this.onChange);
-  }
-*/
   onChange() {
     this.setState({ items: GroceryItemStore.getItems() });
     // render();
   }
-  /*componentWilMount() {
-    GroceryItemStore.onChange((items) => {
-      this.onChange();
-    });
-  }*/
+  */
+
+  onTitleChange(event) {
+    const item = this.state.item;
+    item.name = event.target.value;
+    this.setState({ item });
+  }
+
+  onClickSave() {
+    this.props.actions.addItem(this.state.item);
+  }
+
+/*
+  itemRow(item, index) {
+    return <div key={index}>{item.name}</div>;
+  }
+*/
+
 
   render() {
     return (
@@ -48,16 +63,44 @@ class Store extends React.Component {
           <table>
             <tbody>
               {
+               // this.props.items.map(this.itemRow)
                 this.props.items.map((item, index) => (
                   <GroceryItem item={item} key={index} />
                 ))
               }
             </tbody>
           </table>
+          <h2>Add Item</h2>
+          <input
+            type="text"
+            onChange={this.onTitleChange}
+            value={this.state.item.name}
+          />
+
+          <input
+            type="submit"
+            value="Save"
+            onClick={this.onClickSave}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Store);
+function mapStateToProps(state, ownProps) {
+  // debugger;
+  return {
+    items: state.items,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(groceryItemActions, dispatch),
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(s)(Store));
+

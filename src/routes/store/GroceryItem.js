@@ -1,36 +1,44 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as groceryItemActions from '../../actions/groceryItemActions';
 import s from './Store.css';
 
-import action from './../../actions/GroceryItemActionCreator.js';
+// import action from './../../actions/GroceryItemActionCreator.js';
 
 class GroceryItem extends React.Component {
   static propTypes = {
     item: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
   };
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
+  constructor(props, context) {
+    super(props, context);
+    // this.state = { name: '', purchased: false };
 
     this.togglePurchased = this.togglePurchased.bind(this);
-    this.delete = this.delete.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
-
+/*
   onChange() {
     this.setState({ item: this.props.item });
   }
+  */
   togglePurchased(e) {
     e.preventDefault();
-    if (this.props.item.purchased) {
-      action.unbuy(this.props.item);
+    /*if (this.props.item.purchased) {
+      this.setState({ purchased: true });
     } else {
-      action.buy(this.props.item);
-    }
+      this.setState({ purchase: false });
+    }*/
+    this.props.actions.toggleItem(this.props.item);
   }
-  delete(e) {
+
+  deleteItem(e) {
     e.preventDefault();
-    action.delete(this.props.item);
+    this.props.actions.removeItem(this.props.item);
   }
+
   render() {
     return (
 
@@ -46,7 +54,7 @@ class GroceryItem extends React.Component {
           </form>
         </td>
         <td>
-          <form onSubmit={this.delete}>
+          <form onSubmit={this.deleteItem}>
             <button>&times;</button>
           </form>
         </td>
@@ -54,4 +62,22 @@ class GroceryItem extends React.Component {
     );
   }
 }
-export default withStyles(s)(GroceryItem);
+
+// export default withStyles(s)(GroceryItem);
+
+
+function mapStateToProps(state, ownProps) {
+  // debugger;
+  return {
+    items: state.items,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(groceryItemActions, dispatch),
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(s)(GroceryItem));

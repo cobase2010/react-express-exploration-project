@@ -8,13 +8,35 @@
  */
 
 import React, { PropTypes } from 'react';
+import { Provider } from 'react-redux';
+import configureStore from './../store/configureStore';
 
+const initialState = {
+  items: [
+    {
+      name: 'Ice Cream',
+      purchased: false,
+    }, {
+      name: 'Waffles',
+      purchased: false,
+    }, {
+      name: 'Candy',
+      purchased: true,
+    }, {
+      name: 'Snarks',
+      purchased: false,
+    },
+  ],
+};
 
 const ContextType = {
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
   insertCss: PropTypes.func.isRequired,
 };
+
+const store = configureStore(initialState); // pass initial store state if you want rehydrate state
+
 
 /**
  * The top-level React component setting context (global) variables
@@ -54,7 +76,12 @@ class App extends React.PureComponent {
   render() {
     // NOTE: If you need to add or modify header, footer etc. of the app,
     // please do that inside the Layout component.
-    return React.Children.only(this.props.children);
+
+    return (
+      <Provider store={store}>
+        {React.Children.only(this.props.children)}
+      </Provider>
+    );
   }
 
 }
