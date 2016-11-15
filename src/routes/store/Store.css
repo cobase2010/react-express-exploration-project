@@ -1,13 +1,7 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-@import '../../components/variables.css';
+.strikethrough {
+    text-decoration: line-through;
+    color: slategray;
+}
 
 .root {
   padding-left: 20px;
@@ -17,5 +11,75 @@
 .container {
   margin: 0 auto;
   padding: 0 0 40px;
-  max-width: var(--max-content-width);
+  max-width: 800px;
 }
+
+html {
+    color: darkslategray;
+    background-color: #fffefd;
+}
+
+body {
+    padding-top: 3rem;
+}
+
+.purchased-false {
+    height: 40px;
+    background-color: red;
+}
+
+.purchased-true {
+    height: 40px;
+    background-color: green;
+}
+
+
+h1 {
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+.grocery-addItem {
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+  .columns:first-child {
+    margin-left: 0; }
+
+  .one.columns                    { width: 4.66666666667%; }
+  .two.columns                    { width: 13.3333333333%; }
+  .three                  { width: 22%;            }
+  .four.columns                   { width: 30.6666666667%; }
+  .five.columns                   { width: 39.3333333333%; }
+  .six                   { width: 48%;            }
+  .seven.columns                  { width: 56.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+  .nine.columns                   { width: 74.0%;          }
+  .ten.columns                    { width: 82.6666666667%; }
+  .eleven.columns                 { width: 91.3333333333%; }
+  .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .one-third.column               { width: 30.6666666667%; }
+  .two-thirds.column              { width: 65.3333333333%; }
+
+  .one-half.column                { width: 48%; }
+  .container {
+    content: "";
+    display: table;
+    clear: both; }
+
+  .row {
+    content: "";
+    display: table;
+    clear: both; }
