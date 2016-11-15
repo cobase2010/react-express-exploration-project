@@ -9,6 +9,7 @@
 
 import React, { PropTypes } from 'react';
 
+
 const ContextType = {
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader

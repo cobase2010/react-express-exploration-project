@@ -75,8 +75,7 @@ const config = {
           ],
         },
       },
-      {
-        test: /\.css/,
+      {  test: /\.css/,
         loaders: [
           'isomorphic-style-loader',
           `css-loader?${JSON.stringify({
@@ -126,7 +125,6 @@ const config = {
       },
     ],
   },
-
   resolve: {
     root: path.resolve(__dirname, '../src'),
     modulesDirectories: ['node_modules'],

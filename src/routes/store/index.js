@@ -10,6 +10,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import Store from './Store';
+import GroceryItemStore from './../../stores/GroceryItemStore';
 
 const title = 'Store Listify';
 
@@ -18,9 +19,10 @@ export default {
   path: '/store',
 
   action() {
+    const initial = GroceryItemStore.getItems();
     return {
       title,
-      component: <Layout><Store title={title} /></Layout>,
+      component: <Layout><Store title={title} items={initial} /></Layout>,
     };
   },
 
