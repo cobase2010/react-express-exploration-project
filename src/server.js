@@ -150,7 +150,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 /* eslint-disable no-console */
 models.sync().catch(err => console.error(err.stack)).then(() => {
   app.listen(port, () => {
-    console.log(`The server is running at http://localhost:${port}/`);
+    console.log(`The node-express server is running at http://localhost:${port}/`);
   });
 });
 /* eslint-enable no-console */
