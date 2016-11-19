@@ -9,12 +9,15 @@ import s from './Store.css';
 
 class GroceryItem extends React.Component {
   static propTypes = {
-    item: PropTypes.object.isRequired,
+    item: React.PropTypes.shape({
+      name: React.PropTypes.string.isRequired,
+      purchased: React.PropTypes.boolean,
+    }),
     actions: PropTypes.object.isRequired,
   };
   constructor(props, context) {
     super(props, context);
-    // this.state = { name: '', purchased: false };
+    this.state = { purchased: this.props.item.purchased };
 
     this.togglePurchased = this.togglePurchased.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -26,7 +29,7 @@ class GroceryItem extends React.Component {
   */
   togglePurchased(e) {
     e.preventDefault();
-    /*if (this.props.item.purchased) {
+    /* if (this.props.item.purchased) {
       this.setState({ purchased: true });
     } else {
       this.setState({ purchase: false });

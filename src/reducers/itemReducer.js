@@ -1,5 +1,6 @@
 import * as types from './../actions/actionTypes';
 
+// All these reducers transforms one state (an array of items) to another state (an array of items)
 export default function itemReducer(state = [], action) {
   switch (action.type) {
     case types.ADD_ITEM:
