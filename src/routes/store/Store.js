@@ -88,7 +88,7 @@ class Store extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state, ownProps) { // eslint-disable-line no-unused-vars
   // debugger;
   return {
     items: state.items,

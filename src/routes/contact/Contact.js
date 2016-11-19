@@ -29,5 +29,3 @@ class Contact extends React.Component {
 }
 
 export default withStyles(s)(Contact);
-
-

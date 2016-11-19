@@ -75,7 +75,8 @@ const config = {
           ],
         },
       },
-      {  test: /\.css/,
+      {
+        test: /\.css/,
         loaders: [
           'isomorphic-style-loader',
           `css-loader?${JSON.stringify({

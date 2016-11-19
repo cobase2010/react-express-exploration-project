@@ -9,7 +9,7 @@ export default function itemReducer(state = [], action) {
         Object.assign({}, action.item),
       ];
     case types.TOGGLE_ITEM:
-      return state.map((item, index) => {
+      return state.map((item) => {
         if (item.name === action.item.name) {
           return Object.assign({}, item, {
             purchased: !item.purchased,

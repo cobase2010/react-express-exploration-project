@@ -50,7 +50,7 @@ function GroceryItemStore() {
 
   dispatcher
     .register((event) => {
-      console.log(`Event: ${event.payload}`);
+      // console.log(`Event: ${event.payload}`);
       const split = event
         .type
         .split(':');

@@ -9,7 +9,7 @@ module.exports = {
     return id;
   },
   dispatch(payload) {
-    console.info('Dispatching...', payload);
+    // console.info('Dispatching...', payload);
     Object.keys(listeners).forEach((key, index) => {
       if (index !== null) {
         const listener = listeners[key];

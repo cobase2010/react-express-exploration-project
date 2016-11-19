@@ -69,7 +69,7 @@ class GroceryItem extends React.Component {
 // export default withStyles(s)(GroceryItem);
 
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state, ownProps) { // eslint-disable-line no-unused-vars
   // debugger;
   return {
     items: state.items,

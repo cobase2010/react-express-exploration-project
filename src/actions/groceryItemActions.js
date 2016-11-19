@@ -1,7 +1,6 @@
 import * as types from './actionTypes';
 
 export function addItem(item) {
-  //debugger;
   return { type: types.ADD_ITEM, item };
 }
 
